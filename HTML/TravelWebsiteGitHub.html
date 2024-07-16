@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Photos: Some of Europe in mid-2024</title>
+
+<!--setting styling features instead of importing----------------------------------------->
+    <style>
+        body {
+	font-family: sans-serif;
+	<!--- this is the previous font given: font-family: Arial, sans-serif;----->
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .scrollbar-container {
+            width: 100%;
+            overflow-x: scroll;
+            white-space: nowrap;
+            padding: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .scrollbar-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .scrollbar-container li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .scrollbar-container img {
+            max-height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .scrollbar-container img:hover {
+            transform: scale(1.05);
+        }
+
+	<h1>Heading Here</h1>
+        /* Modal styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 65px; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9); 
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-content, #caption { 
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+	#caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+	}
+    </style>
+</head>
+<body>
+<!--container for the description----------------------------------------->
+    <div class="about-div">
+        <h2 class="about-header">About: Click on a photo. At the bottom of the photo there will be a description.</h2>
+        <p class=about-us">Images from Bosnia and Herzegovina, Montenegro, and Croatia.</p>
+
+    </div>
+
+<!--container for the scrollbar of images. Using list ('li')----------------------------------------->
+<!-- change to <img src="../images/AlexisBernthalImage.jpg" alt="Alexis Image" -->
+
+<div class="scrollbar-container">
+    <ul>
+        <li><img src="../images/sticker_map.jpg" alt="Sticker Map" data-description="This is the sign at the top of The Sarajevo cable car / the Trebević cable car."></li>
+        <li><img src="../images/hiking_womaninblack.jpg" alt="Hiking woman" data-description="A woman hiking in Sarajevo. "></li>
+
+  
+        <li><img src="C:\Users\alexi\Downloads\food_1.jpg" alt="European restaurant menus" data-description="The meal part 1."></li>
+        <li><img src="C:\Users\alexi\Downloads\food_2.jpg" alt="Appetizer" data-description="Definition of appetizer: Stimulate one's appetite. The meal part 2."></li>
+        <li><img src="C:\Users\alexi\Downloads\food_3.jpg" alt="The Finale" data-description="Grand Finale: Happy bellies. The meal part 3."></li>
+
+        </div>
+        <p class=about">Travel makes us notice the things we would not have before. It also makes us want to show off to others.</p>
+    </ul>
+</div>
+
+<!----Modal is a graphical control element that displays content on top of the current page - helps display images on top of the current screen---->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal --> use its "alt" text as a caption
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    var images = document.querySelectorAll('.scrollbar-container img');
+    images.forEach(img => {
+        img.onclick = function() {
+	// display the image selected 
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.dataset.description;
+        }
+    });
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (which is the 'x'), close the modal
+    span.onclick = function() { 
+        modal.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
